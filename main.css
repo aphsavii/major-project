@@ -1,0 +1,49 @@
+.navbar{
+    background-color:rgb(218, 253, 234);
+    padding: 0px;
+    margin: 0px;
+}
+.navbar-brand{
+    height: 45px;
+    padding: 0px 25px;
+}
+.nav-item a{
+    font-size: 14px;
+    font-weight:500;
+    color: black;
+}
+.navbar ul li{
+    border-radius: 20px;
+    padding: 0px 15px;
+    margin: 15px 10px;
+    transition: 0.5s;
+}
+.navbar ul li:hover{
+    background-color: rgb(23, 128, 23);
+}
+.nav-item :hover{
+    color: white;
+}
+.logarea{
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    margin: 50px 70px;
+    background-color:  rgba(218, 253, 234, 0.313);
+    position: absolute;
+    box-shadow: 60px 0px 80px 10px #000;
+}
+.bttn{
+    width: 190px;
+    padding: 6px 0px;
+    position: absolute;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgb(23, 128, 23), transparent) rgb(218, 253, 234);
+    transition: background-color 0.5s;
+    border: none;
+    font-weight: bold;
+}
+.bttn:hover, .bttn:focus{
+    background-color: rgb(23, 128, 23);
+    color: #fff;
+}
