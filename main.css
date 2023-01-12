@@ -27,10 +27,13 @@
 .logarea{
     width: 350px;
     height: 350px;
+    margin-top: 50px;
+    margin-left: 50px;
+    display:flex ;
+    justify-content: center;
     border-radius: 50%;
-    margin: 50px 70px;
-    background-color:  rgba(218, 253, 234, 0.313);
-    position: absolute;
+    background-color:  rgba(218, 253, 234, 0.445);
+    position:absolute;
     box-shadow: 60px 0px 80px 10px #000;
 }
 .bttn{
@@ -43,7 +46,49 @@
     border: none;
     font-weight: bold;
 }
+
 .bttn:hover, .bttn:focus{
     background-color: rgb(23, 128, 23);
     color: #fff;
+}
+
+.bg{
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-position-x: right;
+    position: absolute;
+    background-image: url(banner1.jpg);
+}
+@media only screen and (max-width: 768px) {
+    .bg{
+        background-image: url(banner13.jpg);
+        background-position: center;
+        height: 500px;
+    }
+    .logarea{
+        margin-left: 0px;
+        margin-top: 80px;
+    }
+    .banner{
+        display:flex;
+        justify-content: center;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .bg{
+        background-image: url(banner11.jpg);
+        height: 650px;
+    }
+    .logarea{
+        width: 300px;
+        height: 300px;
+        margin-top: 160px;
+        margin-left: 0px;
+        box-shadow: -60px 0px 80px 10px #000;
+
+    }
+    .bttn{
+        width: 150px;
+    }
 }
