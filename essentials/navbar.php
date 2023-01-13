@@ -2,7 +2,7 @@
 echo '    <div class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <div class="navbar-header">
-                <img src="logo.png" class="navbar-brand">
+                <img src="./images/logo.png" class="navbar-brand">
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>

@@ -58,11 +58,11 @@
     background-size: cover;
     background-position-x: right;
     position: absolute;
-    background-image: url(banner1.jpg);
+    background-image: url(images/banner1.jpg);
 }
 @media only screen and (max-width: 768px) {
     .bg{
-        background-image: url(banner13.jpg);
+        background-image: url(images/banner13.jpg);
         background-position: center;
         height: 500px;
     }
@@ -77,7 +77,7 @@
 }
 @media only screen and (max-width: 576px) {
     .bg{
-        background-image: url(banner11.jpg);
+        background-image: url(images/banner11.jpg);
         height: 650px;
     }
     .logarea{
