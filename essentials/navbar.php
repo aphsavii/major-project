@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <div class="navbar navbar-expand-lg">
+<?php
+echo '    <div class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <div class="navbar-header">
                 <img src="logo.png" class="navbar-brand">
@@ -37,11 +23,5 @@
             </div>
         </div>
     </div>
-    <div class="banner">
-        <div class="bg"></div>
-        <div class="logarea">
-            <button class="bttn" type="button" style="margin-top: 180px;">STUDENT LOGIN</button>
-            <button class="bttn" type="button" style="margin-top: 130px;">ADMIN LOGIN</button>
-        </div>
-    </div>
-</body>
+';
+?>

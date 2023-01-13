@@ -1,3 +1,8 @@
+<?php
+require 'essentials/signup.php';
+require 'essentials/login.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +17,9 @@
 </head>
 
 <body>
-    <!-- SIGN UP MODAL -->
 
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- SIGN UP MODAL -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,22 +28,23 @@
                 </div>
                 <div class="modal-body">
 
-                    <form>
+                    <form action="essentials/signup.php" method="post">
                         <div class="mb-3">
                             <label for="uname" class="form-label">Registration No</label>
-                            <input type="number" class="form-control" id="uname">
+                            <input type="number" name="uname" class="form-control" id="uname" required>
                         </div>
                         <div class="mb-3">
                             <label for="pass" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="pass">
+                            <input type="password" name="pass" class="form-control" id="pass" required>
                         </div>
                         <div class="mb-3">
                             <label for="cpass" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="cpass">
+                            <input type="password" name="cpass" class="form-control" id="cpass" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">I confirm that I am signing up for my registration no</label>
+                            <label class="form-check-label" for="exampleCheck1">I confirm that I am signing up for my
+                                registration no</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
@@ -52,7 +58,6 @@
     </div>
 
     <!-- LOGIN MODAL -->
-
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -62,14 +67,14 @@
                 </div>
                 <div class="modal-body">
 
-                    <form>
+                    <form action="essentials/signup.php" method="post">
                         <div class="mb-3">
                             <label for="username" class="form-label">Registration No</label>
-                            <input type="number" class="form-control" id="username">
+                            <input type="number" name="username" class="form-control" id="username" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" name="password" class="form-control" id="password" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
@@ -82,38 +87,25 @@
         </div>
     </div>
 
+    <!-- for alerts -->
+    <?php
+    require 'essentials/alerts.php';
+    ?>
 
-    <div class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="logo.png" class="navbar-brand">
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Home</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" href="#">MENU</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">TIMING</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">COMPLAINT</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">COMMITTE</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Navbar -->
+    <?php
+    require 'essentials/navbar.php';
+    ?>
+
+    <!-- Banner area -->
+    <div class="banner">
+        <div class="bg"></div>
+        <div class="logarea">
+            <button class="bttn" type="button" style="margin-top: 180px;" data-bs-toggle="modal"
+                data-bs-target="#loginModal">LOGIN</button>
+            <button class="bttn" type="button" style="margin-top: 130px;" data-bs-toggle="modal"
+                data-bs-target="#signupModal">SIGNUP</button>
         </div>
-    </div>
-    <div class="logarea"></div>
-    <button class="bttn" type="button" style="margin: 180px 150px;" data-bs-toggle="modal"
-        data-bs-target="#loginModal">LOGIN</button>
-    <button class="bttn" type="button" style="margin: 230px 150px;" data-bs-toggle="modal"
-        data-bs-target="#signupModal">SIGN UP</button>
-    <div>
-        <img src="banner1.jpg" width="100%" height="450px">
     </div>
 </body>
 
