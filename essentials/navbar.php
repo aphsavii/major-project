@@ -1,5 +1,5 @@
 <?php
-echo '    <div class="navbar navbar-expand-lg">
+echo '    <div class="navbar navbar-expand-lg" style="width:100%;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <img src="./images/logo.png" class="navbar-brand">
@@ -14,7 +14,7 @@ echo '    <div class="navbar navbar-expand-lg">
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" href="#">MENU</a></li>
+                        <li class="nav-item"><a class="nav-link" href="studentDash.php">PAYMENT</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">TIMING</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">COMPLAINT</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">COMMITTE</a></li>
