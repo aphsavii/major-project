@@ -60,8 +60,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
     <title>List Of Students</title>
+
+    <style>
+        .navbar {
+            background-color: rgb(218, 253, 234);
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .navbar-brand {
+            height: 45px;
+            padding: 0px 25px;
+        }
+
+        .nav-item a {
+            font-size: 14px;
+            font-weight: 500;
+            color: black;
+        }
+
+        .navbar ul li {
+            border-radius: 20px;
+            padding: 0px 15px;
+            margin: 15px 10px;
+            transition: 0.5s;
+        }
+
+        .navbar ul li:hover {
+            background-color: rgb(23, 128, 23);
+        }
+
+        .nav-item :hover {
+            color: white;
+        }
+
+        .logarea {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            margin: 50px 70px;
+            background-color: rgba(218, 253, 234, 0.313);
+            position: absolute;
+            box-shadow: 60px 0px 80px 10px #000;
+        }
+
+        .bttn {
+            width: 190px;
+            padding: 6px 0px;
+            position: absolute;
+            border-radius: 20px;
+            background: linear-gradient(90deg, rgb(23, 128, 23), transparent) rgb(218, 253, 234);
+            transition: background-color 0.5s;
+            border: none;
+            font-weight: bold;
+        }
+
+        .bttn:hover,
+        .bttn:focus {
+            background-color: rgb(23, 128, 23);
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -180,24 +241,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container mt-4">
         <p class="h2 fw-light">List of Students enrolled in Mess</p>
-        <div class="table-responsive">
-            <table class="table table-sm table-success table-striped table-bordered mt-4" id="myTable">
-                <thead>
-                    <tr>
-                        <th scope="col">Reg no</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Trade</th>
-                        <th scope="col">Room no</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT * FROM studentslist";
-                    $result = mysqli_query($conn, $sql);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>
+        <table class="table table-sm table-success table-striped table-bordered mt-4" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">Reg no</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Trade</th>
+                    <th scope="col">Room no</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT * FROM studentslist";
+                $result = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>
                     <td>" . $row['regno'] . "</td>
                     <td>" . $row['name'] . "</td>
                     <td>" . $row['trade'] . "</td>
@@ -206,11 +267,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type='button' class='btn btn-danger btn-sm delete' data-bs-toggle='modal' data-bs-target='#deleteModal'>Delete</button>
                     </td>
                 </tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                }
+                ?>
+            </tbody>
+        </table>
         <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addModal">Add
             Student</button>
     </div>

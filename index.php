@@ -1,6 +1,8 @@
-<!-- <?php
-session_start();
-?> -->
+<?php
+require 'essentials/signup.php';
+require 'essentials/login.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +48,7 @@ session_start();
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -54,58 +57,24 @@ session_start();
         </div>
     </div>
 
-    <!--Student LOGIN MODAL -->
+    <!-- LOGIN MODAL -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModalLabel">Student Login</h1>
+                    <h1 class="modal-title fs-5" id="loginModalLabel">Sign Up</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-                    <form action="essentials/login.php" method="post">
+                    <form action="essentials/signup.php" method="post">
                         <div class="mb-3">
-                        <input type="hidden" value="set" name="studentLogin" id="studentLogin">
                             <label for="username" class="form-label">Registration No</label>
                             <input type="number" name="username" class="form-control" id="username" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" id="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <a class="text-sm-left" data-bs-toggle="modal" data-bs-target="#adminLoginModal">Login as Admin</a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--Admin LOGIN MODAL -->
-    <div class="modal fade" id="adminLoginModal" tabindex="-1" aria-labelledby="adminLoginModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="adminLoginModalLabel">Admin Login</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <form action="essentials/login.php" method="post">
-                        <div class="mb-3">
-                            <input type="hidden" value="set" name="adminLogin" id="adminLogin">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" name="username" class="form-control" id="adminusername" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" id="adminpassword" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
@@ -120,9 +89,7 @@ session_start();
 
     <!-- for alerts -->
     <?php
-
     require 'essentials/alerts.php';
-    // echo $_SESSION['user'];
     ?>
 
     <!-- Navbar -->
@@ -134,9 +101,9 @@ session_start();
     <div class="banner">
         <div class="bg"></div>
         <div class="logarea">
-            <button class="bttn" type="button" style="margin-top: 130px;" data-bs-toggle="modal"
-                data-bs-target="#loginModal">LOGIN</button>
             <button class="bttn" type="button" style="margin-top: 180px;" data-bs-toggle="modal"
+                data-bs-target="#loginModal">LOGIN</button>
+            <button class="bttn" type="button" style="margin-top: 130px;" data-bs-toggle="modal"
                 data-bs-target="#signupModal">SIGNUP</button>
         </div>
     </div>

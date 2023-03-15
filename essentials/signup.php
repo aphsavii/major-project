@@ -2,6 +2,7 @@
 // Starting a session
 session_start();
 
+
 // Connection to the database
 $conn = mysqli_connect('localhost', 'root', '', 'major_project');
 if (!$conn) {
@@ -27,9 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $result = mysqli_query($conn, $sql);
                 if (!$result) {
                     $_SESSION["exist"] = true;
-                }
-                else{
-                    $_SESSION["signup"] = true;
                 }
 
             } else {
