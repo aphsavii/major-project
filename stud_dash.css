@@ -71,7 +71,15 @@ body{
     margin-top: 70px;
     position: static;
     flex-direction: column;
+    /* overflow: scroll; */
+    /* overflow-x: hidden; */
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: none; */
+    overflow-y: scroll;
 }
+/* .mainstudarea::-webkit-scrollbar {
+    display: none;
+} */
 .sidebar li{
     list-style: none;
     padding: 15px 30px;
@@ -136,9 +144,6 @@ div button{
     border-radius: 10px;
 }
 @media only screen and (max-width: 1024px) {
-    body{
-        overflow: scroll;
-    }
     .sidebar{
         position: fixed;
     }
@@ -155,11 +160,6 @@ div button{
     .sideadd{
         display: block;
     }
-    
-    body{
-        overflow: hidden;
-
-    }
     .offcanvas-body{
         background: linear-gradient(to right, rgb(5, 117, 230), rgb(2, 27, 121));
     } 
@@ -173,9 +173,6 @@ div button{
 }
 
 @media only screen and (max-width: 768px) {
-    body{
-        overflow: scroll;
-    }
     
     .mainstudarea{
         width: 100vw;
@@ -196,9 +193,6 @@ div button{
 }
 
 @media only screen and (max-width: 576px) {
-    body{
-        overflow: scroll;
-    }
     .pp{
         margin-left: 0px;
     }
