@@ -1,9 +1,18 @@
-<?php
-$conn = mysqli_connect('localhost', 'root', '', 'major_project');
+<!-- 
+Sql command for fetching no of student not prensent on a particular date in hostel
+SELECT * FROM `rebate_requests` WHERE DATE('$date') BETWEEN `fromdate` AND `todate`;
+ -->
 
+<?php
+session_start();
+if (!isset($_SESSION['loggedIn']) || !isset($_SESSION['admin'])) {
+    header('location:index.html');
+}
+$conn = mysqli_connect('localhost', 'root', '', 'major_project');
 if (!$conn) {
     echo "error";
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -58,9 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = mysqli_query($conn, $sql);
     }
 }
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,77 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
-    <title>List Of Students</title>
-
-    <style>
-        *{
-            color:#fff;
-        }
-        body{
-            background: url(images/webb3.jpg)no-repeat center center/cover;
-        }
-        .navbar {
-            background:transparent;
-            padding: 0px;
-            margin: 0px;
-        }
-
-        .navbar-brand {
-            height: 45px;
-            padding: 0px 25px;
-        }
-
-        .nav-item a {
-            font-size: 14px;
-            font-weight: 500;
-            color: white;
-        }
-
-        .navbar ul li {
-            border-radius: 20px;
-            padding: 0px 15px;
-            margin: 15px 10px;
-            transition: 0.5s;
-        }
-
-        .navbar ul li:hover {
-            background-color: white;
-        }
-
-        .nav-item :hover {
-            color: black;
-        }
-
-        .logarea {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            margin: 50px 70px;
-            background-color: rgba(218, 253, 234, 0.313);
-            position: absolute;
-            box-shadow: 60px 0px 80px 10px #000;
-        }
-
-        .bttn {
-            width: 190px;
-            padding: 6px 0px;
-            position: absolute;
-            border-radius: 20px;
-            background: linear-gradient(90deg, rgb(23, 128, 23), transparent) rgb(218, 253, 234);
-            transition: background-color 0.5s;
-            border: none;
-            font-weight: bold;
-        }
-
-        .bttn:hover,
-        .bttn:focus {
-            background-color: rgb(23, 128, 23);
-            color: #fff;
-        }
-    </style>
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css” />
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="adminDash.css">
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -155,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="modal-body">
 
-                    <form action="listOfStudents.php" method="post">
+                    <form action="adminDash.php" method="post">
                         <div class="mb-3">
                             <label for="regno" class="form-label">Registration No</label>
                             <input name="regno" type="number" class="form-control" id="regno" required>
@@ -194,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="modal-body">
 
-                    <form action="listOfStudents.php" method="post">
+                    <form action="adminDash.php" method="post">
                         <div class="mb-3">
                             <input type="hidden" id="hidden" name="hidden">
                             <label for="editregno" class="form-label">Registration No</label>
@@ -242,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <p></p>
                 </div>
                 <div class="modal-footer">
-                    <form action="ListOfStudents.php" method="post">
+                    <form action="adminDash.php" method="post">
                         <input type="hidden" name="delhid" id="delhid">
                         <button type="submit" class="btn btn-danger">Yes, Delete</button>
                     </form>
@@ -252,31 +195,66 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <!-- Navbar -->
-    <?php
-    require 'essentials/navbar.php';
-    ?>
 
-    <div class="container mt-4">
-        <p class="h2 fw-light"><B>List of Students enrolled in Mess</B></p>
-        <div class="table-responsive">
-            <table class="table table-sm  mt-4" id="myTable">
-                <thead>
-                    <tr>
-                        <th scope="col">Reg no</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Trade</th>
-                        <th scope="col">Room no</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $sql = "SELECT * FROM studentslist";
-                    $result = mysqli_query($conn, $sql);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>
+    <div class="mainPageFull">
+        <img class="webb" src="images/webb3.jpg">
+        <div class="navbar navbar-expand-lg fixed-top navbar-light">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="images/logo.png" class="navbar-brand">
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Home</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1">
+                            <li class="nav-item"><a class="nav-link" href="#">MENU</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">TIMING</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">COMPLAINT</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">COMMITTE</a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="#"></a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="#"></a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="essentials/logout.php">LOGOUT</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute col-lg-12">
+            <div class="d-flex">
+                <div class="sidebar">
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Change Password</a></li>
+                    <li><a href="#">No Due</a></li>
+                    <li><a href="essentials/logout.php">Logout</a></li>
+                </div>
+                <div class="mainstudarea table-responsive">
+                    <p class="h2 fw-light"><B>List of Students enrolled in Mess</B></p>
+                    <table class="table table-sm  mt-4" id="myTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Reg no</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Trade</th>
+                                <th scope="col">Room no</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $sql = "SELECT * FROM studentslist";
+                            $result = mysqli_query($conn, $sql);
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>
                     <td>" . $row['regno'] . "</td>
                     <td>" . $row['name'] . "</td>
                     <td>" . $row['trade'] . "</td>
@@ -285,22 +263,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type='button' class='btn btn-danger btn-sm delete' data-bs-toggle='modal' data-bs-target='#deleteModal'>Delete</button>
                     </td>
                 </tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addModal">Add
-            Student</button>
-    </div>
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addModal">Add
+                        Student</button>
+                </div>
 
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js"
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous">
         </script>
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
-
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();

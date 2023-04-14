@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img src="images/logo.png" class="navbar-brand">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Home</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" href="#">MENU</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">TIMING</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">COMMITTE</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Form -->
+    <section class="main">
+        <div class="login">
+
+            <div class="login-option">
+                <button class="option1 click" onclick="studentLoginFunction()">
+                    <h5>Student Login</h5>
+                </button>
+                <button class="option2" onclick="adminLoginFunction()">
+                    <h5>Admin Login</h5>
+                </button>
+                <button class="option3" onclick="contractorLoginFunction()">
+                    <h5>Mess Contractor Login</h5>
+                </button>
+
+            </div>
+            <div class=" login-form">
+                <form method="post" action="./essentials/login.php">
+                    <input type="hidden" value="student" name="userType" id="userType" >
+                    <div class="input">
+                        <label for="Registration Number">Username</label>
+                        <input type="text" class="text" name="username" id="reg" placeholder="Registration No."
+                            id="box" required>
+                    </div>
+                    <div class="input">
+                        <label for="Enter Password">Enter Password</label>
+                        <input type="password" class="text" name="password" placeholder="Password" id="box" required>
+                    </div>
+                    <button type="submit" class="btn">
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+        function studentLoginFunction() {
+            document.querySelector(".option1").classList.toggle("click");
+            document.querySelector(".option2").classList.remove("click");
+            document.querySelector(".option3").classList.remove("click");
+
+            document.getElementById("reg").placeholder = "Registration No.";
+
+            let userType=document.getElementById("userType");
+            userType.value="student";
+            console.log(userType.value);
+
+        }
+
+
+        function adminLoginFunction() {
+            document.querySelector(".option2").classList.toggle("click");
+            document.querySelector(".option1").classList.remove("click");
+            document.querySelector(".option3").classList.remove("click");
+
+            document.getElementById("reg").placeholder = "User Id";
+
+            let userType=document.getElementById("userType");
+            userType.value="admin";
+            console.log(userType.value);
+        }
+
+        function contractorLoginFunction() {
+            document.querySelector(".option3").classList.toggle("click");
+            document.querySelector(".option1").classList.remove("click");
+            document.querySelector(".option2").classList.remove("click");
+
+            document.getElementById("reg").placeholder = "User Id";
+            
+            let userType=document.getElementById("userType");
+            userType.value="contractor";
+            console.log(userType.value);
+        }
+
+    </script>
+</body>
+
+</html>
