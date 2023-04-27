@@ -76,14 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>List Of Students</title>
 
     <style>
-        *{
-            color:#fff;
+        * {
+            color: #fff;
         }
-        body{
+
+        body {
             background: url(images/webb3.jpg)no-repeat center center/cover;
         }
+
         .navbar {
-            background:transparent;
+            background: transparent;
             padding: 0px;
             margin: 0px;
         }

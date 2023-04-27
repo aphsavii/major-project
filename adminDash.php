@@ -16,6 +16,7 @@ if (!$conn) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+
     // Update students details in the database
     if (isset($_POST['hidden'])) {
         $primary = $_POST['hidden'];
@@ -89,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <!-- ADD STUDENTS Modal -->
 
-    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -98,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="modal-body">
 
-                    <form action="adminDash.php" method="post">
+                    <form action="" method="post">
                         <div class="mb-3">
                             <label for="regno" class="form-label">Registration No</label>
                             <input name="regno" type="number" class="form-control" id="regno" required>
@@ -195,7 +196,156 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
+    <!-- Rebate request Modal -->
+    <div class="modal fade" id="rebateRequests" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Rebate Requests</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action='./essentials/grantRebate.php' method='post' id='grantRebateForm'>
+                        <input type='hidden' name='grantRebate' id='grantRebate'>
+                    </form>
+                    <form action='./essentials/rejectRebate.php' method='post' id='rejectRebateForm'>
+                        <input type='hidden' name='rejectRebate' id='rejectRebate'>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-sm  mt-4" id="rebateRequestsTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Regno</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Roomno</th>
+                                    <th scope="col">From</th>
+                                    <th scope="col">To</th>
+                                    <th scope="col">Days</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM `rebate_requests` NATURAL JOIN `studentslist`";
+                                $result = mysqli_query($conn, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>
+                    <td>" . $row['regno'] . "</td>
+                    <td>" . $row['name'] . "</td>
+                    <td>" . $row['roomno'] . "</td>
+                    <td>" . $row['fromdate'] . "</td>
+                    <td>" . $row['todate'] . "</td>
+                    <td>" . $row['noofdays'] . "</td>
+                    <td>
+                
+                  <button type='submit' class='btn btn-success btn-sm grant' form='grantRebateForm'>Grant </button>
+                    <button class='btn btn-danger btn-sm reject' form='rejectRebateForm'>Reject </button>
+                    </td>
+                </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Rebates Granted -->
+    <div class="modal fade" id="grantedRebates" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Granted Rebates</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm  mt-4" id="grantedRebatesTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Regno</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Roomno</th>
+                                    <th scope="col">From</th>
+                                    <th scope="col">To</th>
+                                    <th scope="col">Days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM `granted_Rebates` NATURAL JOIN `studentslist`";
+                                $result = mysqli_query($conn, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>
+                    <td>" . $row['regno'] . "</td>
+                    <td>" . $row['name'] . "</td>
+                    <td>" . $row['roomno'] . "</td>
+                    <td>" . $row['fromdate'] . "</td>
+                    <td>" . $row['todate'] . "</td>
+                    <td>" . $row['noofdays'] . "</td>                    
+                </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaints modal -->
+    <div class="modal fade" id="complaints" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Complaints by Students</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm  mt-4" id="rebateRequestsTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Regno</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Roomno</th>
+                                    <th scope="col">Complaint</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT * FROM `complaints` NATURAL JOIN `studentslist`";
+                                $result = mysqli_query($conn, $sql);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>
+                    <td>" . $row['regno'] . "</td>
+                    <td>" . $row['name'] . "</td>
+                    <td>" . $row['roomno'] . "</td>
+                    <td>" . $row['complaint'] . "<br><br><a href='#'>" . $row['time'] . "</a> </td>
+                </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main page -->
 
     <div class="mainPageFull">
         <img class="webb" src="images/webb3.jpg">
@@ -217,10 +367,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <ul class="navbar-nav justify-content-end flex-grow-1">
                             <li class="nav-item"><a class="nav-link" href="#">MENU</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">TIMING</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">COMPLAINT</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">COMMITTE</a></li>
-                            <li class="nav-item sideadd"><a class="nav-link" href="#"></a></li>
-                            <li class="nav-item sideadd"><a class="nav-link" href="#"></a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="#rebateRequests"
+                                    data-bs-toggle="modal" data-bs-target="#rebateRequests">Rebate Requests</a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="#grantedRebates"
+                                    data-bs-toggle="modal" data-bs-target="#grantedRebates">Granted Rebates</a></li>
+                            <li class="nav-item sideadd"><a class="nav-link" href="#">Complaints
+                                </a></li>
                             <li class="nav-item sideadd"><a class="nav-link" href="essentials/logout.php">LOGOUT</a>
                             </li>
                         </ul>
@@ -231,14 +384,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="position-absolute col-lg-12">
             <div class="d-flex">
                 <div class="sidebar">
-                    <li><a href="#">Feedback</a></li>
-                    <li><a href="#">Change Password</a></li>
-                    <li><a href="#">No Due</a></li>
+                    <li><a href="#complaints" data-bs-toggle="modal" data-bs-target="#complaints">Complaints</a></li>
+                    <li><a href="#rebateRequests" data-bs-toggle="modal" data-bs-target="#rebateRequests">Rebate
+                            Requests</a></li>
+                    <li><a href="#grantedRebates" data-bs-toggle="modal" data-bs-target="#grantedRebates">Granted
+                            Rebates</a></li>
                     <li><a href="essentials/logout.php">Logout</a></li>
+                                <?php
+                                $date=date("Y-m-d");
+                                $tS=250;
+                                $sql="SELECT * FROM `rebate_requests` WHERE DATE('$date') BETWEEN `fromdate` AND `todate`";
+                                $result=mysqli_query($conn,$sql);
+                                $tP=$tS-mysqli_num_rows($result);
+                                echo '<div style="position:relative;bottom:-250px;"><a href="#" style="color: #4fcb4f; margin: 10px 20px;
+                            }">Presence : '.$tP.'/'.$tS.'  </a></div>';
+                                
+                                ?>
                 </div>
                 <div class="mainstudarea table-responsive">
                     <p class="h2 fw-light"><B>List of Students enrolled in Mess</B></p>
-                    <table class="table table-sm  mt-4" id="myTable">
+                    <table class="table table-sm  mt-4" id="listOfStudents">
                         <thead>
                             <tr>
                                 <th scope="col">Reg no</th>
@@ -267,7 +432,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             ?>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#addModal">Add
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addModal">Add
                         Student</button>
                 </div>
 
@@ -281,9 +446,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable();
+            $('#listOfStudents').DataTable();
         });
-        $('#myTable').DataTable({
+        $('#listOfStudents').DataTable({
+            responsive: true
+        });
+        $(document).ready(function () {
+            $('#rebateRequestsTable').DataTable();
+        });
+        $('#rebateRequestsTable').DataTable({
+            responsive: true
+        });
+
+        $(document).ready(function () {
+            $('#grantedRebatesTable').DataTable();
+        });
+        $('#grantedRebatesTable').DataTable({
             responsive: true
         });
 
@@ -328,6 +506,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 delhid.value = regno;
                 // console.log(delmod);
+
+            })
+        });
+
+
+        // Grant  rebate
+        var grant = document.getElementsByClassName('grant');
+        Array.from(grant).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("event", e);
+
+                var tr = e.target.parentNode.parentNode;
+                var regno = tr.getElementsByTagName('td')[0].innerText;
+                grantRebate.value = regno;
+                console.log(grantRebate);
+
+            })
+        });
+        // Reject  rebate
+        var reject = document.getElementsByClassName('reject');
+        Array.from(reject).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("event", e);
+
+                var tr = e.target.parentNode.parentNode;
+                var regno = tr.getElementsByTagName('td')[0].innerText;
+                rejectRebate.value = regno;
+                console.log(rejectRebate);
 
             })
         });

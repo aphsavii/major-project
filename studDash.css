@@ -71,6 +71,7 @@ body{
     margin-top: 70px;
     position: static;
     flex-direction: column;
+    padding: 20px;
 }
 .sidebar li{
     list-style: none;

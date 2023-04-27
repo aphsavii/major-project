@@ -52,8 +52,7 @@ if (isset($_POST['uploadDp'])) {
             // echo "<h3>  Failed to upload image!</h3>";
             header('location:studDash.php');
         }
-    }
-    else{
+    } else {
         $sql = "UPDATE `profiles` SET `filename` = '$filename' WHERE `profiles`.`regno` = '$user';
         ";
         $result = mysqli_query($conn, $sql);
@@ -69,9 +68,14 @@ if (isset($_POST['uploadDp'])) {
             header('location:studDash.php');
         }
     }
-
 }
 
+if (isset($_POST['complaint'])) {
+$complaint=$_POST['complaintText'];
+$sql="INSERT INTO `complaints` (`regno`, `complaint`) VALUES ('$user', '$complaint');";
+$result=mysqli_query($conn,$sql);
+
+}
 
 ?>
 
@@ -119,6 +123,30 @@ if (isset($_POST['uploadDp'])) {
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Rebate -->
+    <div class="modal fade" id="cancelRebateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Cancel Rebate</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="delmod">
+                    <h5>
+                        Are you sure you want to cancel the rebate ?
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    <form action="./essentials/cancelRebate.php" method="post">
+                        <input type="hidden" name="cancelRebate" id="cancelRebate">
+                        <button type="submit" class="btn btn-danger">Yes, Cancel</button>
+                    </form>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -236,6 +264,31 @@ if (isset($_POST['uploadDp'])) {
         </div>
     </div>
 
+    <!-- complaint modal -->
+    <div class="modal" tabindex="-1" id="complaint">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-dialog-centered">Do a complaint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="studDash.php" method="post" id="complaintForm">
+                        <input type="hidden" name="complaint">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Type your query here" id="complaintText" name="complaintText"
+                                style="height: 100px" required></textarea>
+                            <label for="complaintText">Your query</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="complaintForm">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Main body -->
 
@@ -274,7 +327,8 @@ if (isset($_POST['uploadDp'])) {
         <div class="position-absolute col-lg-12">
             <div class="d-flex">
                 <div class="sidebar">
-                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#" data-bs-toggle='modal' data-bs-target='#complaint'>Complaint</a></li>
+                    <li><a href="#" data-bs-toggle='modal' data-bs-target='#cancelRebateModal'>Cancel Rebate</a></li>
                     <li><a href="#" data-bs-toggle='modal' data-bs-target='#changePass'>Change Password</a></li>
                     <li><a href="#" data-bs-toggle='modal' data-bs-target='#uploadDp'>Upload Photo</a></li>
                     <li><a href="essentials/logout.php">Logout</a></li>
