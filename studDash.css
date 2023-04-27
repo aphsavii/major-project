@@ -1,0 +1,232 @@
+body{
+    overflow: hidden;
+}
+.navbar {
+    background-color: rgba(225, 225, 225, 0.1);
+    box-shadow: 0 0 6px rgba(225, 225, 225, 0.5) ;
+    padding: 0px;
+    margin: 0px;
+    height: 70px;
+}
+
+.navbar-brand {
+    height: 45px;
+    padding: 0px 25px;
+}
+
+.nav-item a {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.navbar ul li {
+    border-radius: 20px;
+    padding: 0px 15px;
+    margin: 15px 10px;
+    transition: 0.5s;
+}
+
+.navbar ul li:hover {
+    background-color: white;
+}
+.navbar-toggler-icon{
+    color: #fff;
+}
+
+.nav-item :hover {
+    color: black;
+}
+
+.webb{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+.sideadd{
+    display: none;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: rgba(225, 225, 225, 0.1);
+    box-shadow: 0 0 6px rgba(225, 225, 225, 0.5) ;
+    position: sticky;
+    top: 70px;
+    color: white;
+
+}
+.sidebar a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.mainstudarea {
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    margin-top: 70px;
+    position: static;
+    flex-direction: column;
+    padding: 20px;
+}
+.sidebar li{
+    list-style: none;
+    padding: 15px 30px;
+    transition: all 0.3s linear;
+}
+.sidebar li:hover {
+    border-left: 1px solid #fff;
+    box-shadow: 0 0 4px rgba(225, 225, 225, 0.5);
+}
+
+.pp{
+    width: 170px;
+    height: 170px;
+    margin-left: 70px;
+    margin-top: 40px;
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+}
+.mainstudarea ul{
+    margin-top: 40px;
+}
+.mainstudarea ul li{
+    list-style: none;
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight:bold;
+    color: white;
+}
+.container{
+    display: flex;
+}
+.cards{
+    margin-top: 35px;
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+.box{
+    background-color: rgba(225, 225, 225, 0.1);
+    box-shadow: 0 0 6px rgba(225, 225, 225, 0.5) ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    flex: 1 1 200px;
+    border-radius: 15px;
+    height: 230px;
+}
+.ppedit{
+    padding-bottom: 20px;
+    padding-left: 20px;
+    position:absolute;
+}
+.navbar-light .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+div button{
+    padding: 8px 70px;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 1024px) {
+    body{
+        overflow: scroll;
+    }
+    .sidebar{
+        position: fixed;
+    }
+    .mainstudarea{
+        margin-left: 200px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .sidebar{
+        width: 0%;
+        display: none;
+    }
+    .sideadd{
+        display: block;
+    }
+    
+    body{
+        overflow: hidden;
+
+    }
+    .offcanvas-body{
+        background: linear-gradient(to right, rgb(5, 117, 230), rgb(2, 27, 121));
+    } 
+    .cards{
+        display: block;
+    }
+    .mainstudarea{
+        width: 100vw;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body{
+        overflow: scroll;
+    }
+    
+    .mainstudarea{
+        width: 100vw;
+    }
+    .logarea {
+        margin-left: 0px;
+        margin-top: 80px;
+    }
+    .cards{
+        display: block;
+    }
+    .container{
+        display: flex;
+    }
+    .pp{
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    body{
+        overflow: scroll;
+    }
+    .pp{
+        margin-left: 0px;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .container ul li{
+        margin-right: 0px;
+    }
+
+    .logarea {
+        width: 300px;
+        height: 300px;
+        margin-top: 160px;
+        margin-left: 0px;
+        box-shadow: -60px 0px 80px 10px #000;
+    }
+
+    .bttn {
+        width: 150px;
+    }
+    .cards{
+        display: block;
+    }
+}
