@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "INSERT INTO `credentials` (`username`, `password`, `signup time`) VALUES ($regno, $pass, current_timestamp());
         ";
 
+        $result = mysqli_query($conn, $sql);
     }
 }
 ?>
